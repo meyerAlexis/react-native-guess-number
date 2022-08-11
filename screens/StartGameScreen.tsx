@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {Context} from "../context/langContext";
+import { Context } from "../context/langContext";
 
 import {
   View,
@@ -15,12 +15,13 @@ import {
 import tw from "tailwind-react-native-classnames";
 import React from 'react';
 import data from "../assets/data"
+import HeaderApp from "../components/HeaderApp";
 
 
 export default function StartGameScreen({ route, navigation }: any) {
 
-  const {lang} : String = useContext(Context)
-  const text = data[lang];
+  const { lang }: any = useContext(Context)
+  const text : any= data[lang];
 
   const [step, setStep] = useState(0);
 
@@ -100,6 +101,7 @@ export default function StartGameScreen({ route, navigation }: any) {
       <ScrollView>
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={20}>
           <View style={[tw`flex-1 mt-10`]}>
+            <HeaderApp />
             <Text style={[tw`text-center text-2xl pb-4 text-white`]}>
               {text.startGame_title}
             </Text>

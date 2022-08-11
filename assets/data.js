@@ -1,5 +1,7 @@
 const traductions  = {
     "FR":{
+        all_header_title: "Devinez le numéro",
+
         startGame_title: "Démarrer un nouveau jeu!",
         startGame_selectNum: "Sélectionnez le numéro",
         startGame_butReset : "Réinitialiser",
@@ -18,6 +20,8 @@ const traductions  = {
         gameOver_butPlayAgain: "Rejouer"
     }, 
     "EN": {
+        all_header_title: "Guess number",
+
         startGame_title: "Start a new Game!",
         startGame_selectNum: "Select Number",
         startGame_butReset : "Reset",

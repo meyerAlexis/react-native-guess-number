@@ -2,15 +2,17 @@ import React, { useContext } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import data from "../assets/data";
+import HeaderApp from "../components/HeaderApp";
 import { Context } from "../context/langContext";
 
 export default function GameOverScreen({ navigation }: any) {
   
-  const { lang }: String = useContext(Context)
-  const text = data[lang];
+  const { lang }: any = useContext(Context)
+  const text: any = data[lang];
 
   return (
     <View style={styles.container}>
+      <HeaderApp/>
       <Text style={styles.title}>{text.gameOver_title}</Text>
       <View style={[tw`w-1/3 mx-1 mt-4 rounded-xl overflow-hidden`]}>
       <Button

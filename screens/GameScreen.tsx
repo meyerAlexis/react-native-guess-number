@@ -4,9 +4,9 @@ import tw from 'tailwind-react-native-classnames';
 
 import { lockAsync, OrientationLock } from "expo-screen-orientation";
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 import { Context } from '../context/langContext';
 import data from '../assets/data';
+import HeaderApp from '../components/HeaderApp';
 
 export default function GameScreen({ route, navigation }: any) {
 
@@ -17,8 +17,8 @@ export default function GameScreen({ route, navigation }: any) {
         };
     }, []);
 
-    const { lang }: String = useContext(Context)
-    const text = data[lang];
+    const { lang }: any= useContext(Context)
+    const text: any = data[lang];
 
     const selectedNumber = route.params.selectedNumber;
 
@@ -88,6 +88,7 @@ export default function GameScreen({ route, navigation }: any) {
 
     return (
         <View style={[tw`flex-1 mt-10`]}>
+            <HeaderApp/>
             <Text style={[tw`text-xl text-white text-center`]}>
                 {text.game_title1}
             </Text>
