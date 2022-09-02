@@ -2,17 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 import tw from "tailwind-react-native-classnames";
-import data from "../assets/data";
+import traductions from "../assets/data";
 import { Context } from "../context/langContext";
 import { Dimensions } from "react-native";
 
 export default function HeaderApp() {
 
     const { lang }: any = useContext(Context)
-    const text: any = data[lang];
-
-
-
+    const text: any = traductions[lang];
 
     return (
         <View style={[tw`items-center justify-center mx-auto mb-7`]}>

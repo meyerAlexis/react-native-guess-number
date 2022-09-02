@@ -3,10 +3,11 @@ import { Alert, Button, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
 import { lockAsync, OrientationLock } from "expo-screen-orientation";
-import { Text, View } from '../components/Themed';
-import { Context } from '../context/langContext';
-import data from '../assets/data';
 import HeaderApp from '../components/HeaderApp';
+import { Text, View } from '../components/Themed';
+
+import { Context } from '../context/langContext';
+import traductions from '../assets/data';
 
 export default function GameScreen({ route, navigation }: any) {
 
@@ -17,8 +18,8 @@ export default function GameScreen({ route, navigation }: any) {
         };
     }, []);
 
-    const { lang }: any= useContext(Context)
-    const text: any = data[lang];
+    const { lang }: any = useContext(Context);
+    const text: any = traductions[lang];
 
     const selectedNumber = route.params.selectedNumber;
 
@@ -32,7 +33,10 @@ export default function GameScreen({ route, navigation }: any) {
     const handleLessPress = () => {
         if (guess <= selectedNumber) {
             Alert.alert("😡😡😡", text.game_error_wrong, [
-                { text: "Ok", style: "destructive" },
+                {
+                    text: text.error_wrong_but_text,
+                    style: text.error_wrong_but_style
+                },
             ]);
             return;
         }
@@ -48,7 +52,10 @@ export default function GameScreen({ route, navigation }: any) {
     const handleGreaterPress = () => {
         if (guess >= selectedNumber) {
             Alert.alert("😡😡😡", text.game_error_wrong, [
-                { text: "Ok", style: "destructive" },
+                {
+                    text: text.error_wrong_but_text,
+                    style: text.error_wrong_but_style
+                },
             ]);
             return;
         }
@@ -66,13 +73,11 @@ export default function GameScreen({ route, navigation }: any) {
             <View style={[tw`border-2 w-10/12 mx-auto mt-2 py-3 rounded-2xl`]}>
                 <Text
                     style={[tw`mt-2 text-xl text-center w-10/12 mx-auto`]}>
-                    {text.startGame_titleSelectShow}
+                    {text.game_titleSelectShow}
                 </Text>
                 <View style={[tw`items-center justify-center mt-2`]}>
                     <Text
-                        style={[
-                            tw`border-2 text-center rounded-xl text-2xl text-red-400 border-red-400 p-4`,
-                        ]}>
+                        style={[ tw`border-2 text-center rounded-xl text-2xl text-red-400 border-red-400 p-4` ]}>
                         {selectedNumber}
                     </Text>
                 </View>
@@ -88,7 +93,7 @@ export default function GameScreen({ route, navigation }: any) {
 
     return (
         <View style={[tw`flex-1 mt-10`]}>
-            <HeaderApp/>
+            <HeaderApp />
             <Text style={[tw`text-xl text-white text-center`]}>
                 {text.game_title1}
             </Text>

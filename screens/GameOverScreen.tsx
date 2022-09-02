@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import tw from "tailwind-react-native-classnames";
-import data from "../assets/data";
+import traductions from "../assets/data";
 import HeaderApp from "../components/HeaderApp";
 import { Context } from "../context/langContext";
 
 export default function GameOverScreen({ navigation }: any) {
   
   const { lang }: any = useContext(Context)
-  const text: any = data[lang];
+  const text: any = traductions[lang];
 
   return (
     <View style={styles.container}>

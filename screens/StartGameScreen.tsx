@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { Context } from "../context/langContext";
+import React, { useContext, useState } from "react";
 
 import {
   View,
@@ -12,16 +11,17 @@ import {
   ScrollView,
   KeyboardAvoidingView
 } from "react-native";
+import { Context } from "../context/langContext";
 import tw from "tailwind-react-native-classnames";
-import React from 'react';
-import data from "../assets/data"
+
 import HeaderApp from "../components/HeaderApp";
+import traduction from "../assets/data";
 
 
 export default function StartGameScreen({ route, navigation }: any) {
 
   const { lang }: any = useContext(Context)
-  const text : any= data[lang];
+  const text: any = traduction[lang];
 
   const [step, setStep] = useState(0);
 
@@ -29,9 +29,7 @@ export default function StartGameScreen({ route, navigation }: any) {
     if (step > 1) {
       handleResetButtonPress()
     }
-
   }
-
 
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -47,12 +45,12 @@ export default function StartGameScreen({ route, navigation }: any) {
     let numberSelected = parseInt(enteredValue);
     if (isNaN(numberSelected)) {
       Alert.alert(
-        "you make a mistake",
-        "number must be between 0 and 99",
+        text.error_wrong_alert_title,
+        text.error_wrong_alert_message,
         [
           {
-            text: "OK",
-            style: "destructive",
+            text: text.error_wrong_but_text,
+            style: text.error_wrong_but_style,
             onPress: handleResetButtonPress,
           },
         ]
@@ -74,9 +72,7 @@ export default function StartGameScreen({ route, navigation }: any) {
         </Text>
         <View style={[tw`items-center justify-center mt-2`]}>
           <Text
-            style={[
-              tw`border-2 text-center rounded-xl text-2xl text-red-400 border-red-400 p-4`,
-            ]}>
+            style={[tw`border-2 text-center rounded-xl text-2xl text-red-400 border-red-400 p-4`,]}>
             {selectedNumber}
           </Text>
         </View>
@@ -88,8 +84,7 @@ export default function StartGameScreen({ route, navigation }: any) {
             onPress={() => {
               setStep(2)
               navigation.navigate('GameScreen', { selectedNumber: selectedNumber });
-            }
-            }
+            }}
           />
         </View>
       </View>
@@ -106,9 +101,7 @@ export default function StartGameScreen({ route, navigation }: any) {
               {text.startGame_title}
             </Text>
             <View
-              style={[
-                tw`border-2 border-gray-600 py-4 w-10/12 mx-auto rounded-xl `,
-              ]}>
+              style={[tw`border-2 border-gray-600 py-4 w-10/12 mx-auto rounded-xl `]}>
               <View style={[tw``]}>
                 <Text style={[tw`text-center text-xl text-white`]}>
                   {text.startGame_selectNum}
@@ -120,19 +113,13 @@ export default function StartGameScreen({ route, navigation }: any) {
                   }}
                   keyboardType="number-pad"
                   maxLength={2}
-                  style={[
-                    tw`text-center text-xl font-semibold mt-4 text-white border-b border-white mx-auto `,
-                  ]}
+                  style={[tw`text-center text-xl font-semibold mt-4 text-white border-b border-white mx-auto `]}
                 />
               </View>
               <View
-                style={[
-                  tw`flex-row w-4/5 mx-auto justify-between mt-4`,
-                ]}>
+                style={[tw`flex-row w-4/5 mx-auto justify-between mt-4`]}>
                 <View
-                  style={[
-                    tw`flex-1 mx-1 rounded overflow-hidden`,
-                  ]}>
+                  style={[tw`flex-1 mx-1 rounded overflow-hidden`]}>
                   <Button
                     title={text.startGame_butReset}
                     color="#ee2222"
@@ -140,9 +127,7 @@ export default function StartGameScreen({ route, navigation }: any) {
                   />
                 </View>
                 <View
-                  style={[
-                    tw`flex-1 mx-1 rounded overflow-hidden`,
-                  ]}>
+                  style={[tw`flex-1 mx-1 rounded overflow-hidden`]}>
                   <Button
                     disabled={confirmed ? true : false}
                     title={text.startGame_butValidate}
